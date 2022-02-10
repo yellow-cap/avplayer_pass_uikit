@@ -11,11 +11,11 @@ import AVFoundation
 import AVKit
 
 class DetailsViewController: UIViewController {
-    let player: AVQueuePlayer
+    let player: Player
     let playerViewController = AVPlayerViewController()
 
 
-    init(player: AVQueuePlayer) {
+    init(player: Player) {
         self.player = player
         playerViewController.player = player
 
@@ -47,5 +47,11 @@ class DetailsViewController: UIViewController {
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
+        if player.isStarted { return }
+        
+        player.play()
+
+        player.isStarted = true
     }
 }

@@ -11,9 +11,9 @@ import AVKit
 class SidebarViewController: UIViewController {
     weak var router: Router?
 
-    let player: AVQueuePlayer
+    let player: Player
 
-    init(player: AVQueuePlayer) {
+    init(player: Player) {
         self.player = player
 
         super.init(nibName: nil, bundle: nil)

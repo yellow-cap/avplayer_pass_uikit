@@ -11,7 +11,7 @@ import AVKit
 class PipViewController: UIViewController {
     weak var router: Router?
     
-    let player: AVQueuePlayer
+    let player: Player
     var playerView: UIView = {
         let v = UIView()
 
@@ -26,7 +26,7 @@ class PipViewController: UIViewController {
         return l
     }()
 
-    init(player: AVQueuePlayer) {
+    init(player: Player) {
         self.player = player
 
         super.init(nibName: nil, bundle: nil)

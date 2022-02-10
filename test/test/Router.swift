@@ -48,7 +48,7 @@ class Router {
         nav?.pushViewController(vc, animated: true)
     }
 
-    func pushPip(player: AVQueuePlayer) {
+    func pushPip(player: Player) {
         let vc = PipViewController(player: player)
         vc.router = self
 
@@ -57,16 +57,16 @@ class Router {
         splitNav.pushViewController(vc, animated: true)
     }
 
-    func backToSplit(player: AVQueuePlayer) {
+    func backToSplit(player: Player) {
         splitNav.popViewController(animated: true)
 
         let detailsVc = DetailsViewController(player: player)
         splitVc.setViewController(detailsVc, for: .secondary)
     }
 
-    private func setupPlayer() -> AVQueuePlayer {
+    private func setupPlayer() -> Player {
         let asset = AVAsset(url: URL(string: "https://vdqvcus.akamaized.net/6267182477001.m3u8")!)
-        let player = AVQueuePlayer(items: [
+        let player = Player(items: [
             AVPlayerItem(asset: asset)
         ])
 

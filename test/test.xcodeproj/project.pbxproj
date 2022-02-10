@@ -15,6 +15,7 @@
 		AC73211D27B57CD000EAEEC7 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73211C27B57CD000EAEEC7 /* SidebarViewController.swift */; };
 		AC73211F27B57CFC00EAEEC7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73211E27B57CFC00EAEEC7 /* Router.swift */; };
 		AC73212127B57D9A00EAEEC7 /* PipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73212027B57D9A00EAEEC7 /* PipViewController.swift */; };
+		ACF15AC327B597D90055B953 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF15AC227B597D90055B953 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		AC73211C27B57CD000EAEEC7 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		AC73211E27B57CFC00EAEEC7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		AC73212027B57D9A00EAEEC7 /* PipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipViewController.swift; sourceTree = "<group>"; };
+		ACF15AC227B597D90055B953 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				AC73211C27B57CD000EAEEC7 /* SidebarViewController.swift */,
 				AC73211E27B57CFC00EAEEC7 /* Router.swift */,
 				AC73212027B57D9A00EAEEC7 /* PipViewController.swift */,
+				ACF15AC227B597D90055B953 /* Player.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				AC5579EB27ACFCA900776B74 /* ViewController.swift in Sources */,
 				AC5579E927ACFCA900776B74 /* AppDelegate.swift in Sources */,
 				AC73211F27B57CFC00EAEEC7 /* Router.swift in Sources */,
+				ACF15AC327B597D90055B953 /* Player.swift in Sources */,
 				AC73211B27B577DA00EAEEC7 /* DetailsViewController.swift in Sources */,
 				AC73211D27B57CD000EAEEC7 /* SidebarViewController.swift in Sources */,
 			);
