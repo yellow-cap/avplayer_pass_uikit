@@ -50,10 +50,18 @@ class Router {
 
     func pushPip(player: AVQueuePlayer) {
         let vc = PipViewController(player: player)
+        vc.router = self
 
         splitVc.setViewController(nil, for: .secondary)
 
         splitNav.pushViewController(vc, animated: true)
+    }
+
+    func backToSplit(player: AVQueuePlayer) {
+        splitNav.popViewController(animated: true)
+
+        let detailsVc = DetailsViewController(player: player)
+        splitVc.setViewController(detailsVc, for: .secondary)
     }
 
     private func setupPlayer() -> AVQueuePlayer {

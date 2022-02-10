@@ -9,6 +9,8 @@ import UIKit
 import AVKit
 
 class PipViewController: UIViewController {
+    weak var router: Router?
+    
     let player: AVQueuePlayer
     var playerView: UIView = {
         let v = UIView()
@@ -45,6 +47,7 @@ class PipViewController: UIViewController {
         playerView.translatesAutoresizingMaskIntoConstraints = false
         playerView.layer.addSublayer(playerLayer)
 
+        setupRecognizer()
         view.addSubview(playerView)
 
         NSLayoutConstraint.activate([
@@ -66,5 +69,18 @@ class PipViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
+    }
+
+    private func setupRecognizer() {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+
+        recognizer.addTarget(self, action: #selector(onMenuPressed))
+
+        view.addGestureRecognizer(recognizer)
+    }
+
+    @objc private func onMenuPressed() {
+        router?.backToSplit(player: player)
     }
 }
