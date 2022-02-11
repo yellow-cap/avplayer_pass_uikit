@@ -26,7 +26,7 @@ class Router {
 
         let detailsVc = DetailsViewController(player: player)
 
-        splitVc = UISplitViewController(style: .doubleColumn)
+        splitVc = SplitViewController(style: .doubleColumn)
         splitNav = UINavigationController(rootViewController: splitVc!)
 
         splitVc.setViewController(sidebarVc, for: .primary)
