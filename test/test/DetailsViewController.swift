@@ -36,6 +36,8 @@ class DetailsViewController: UIViewController {
 
         view.backgroundColor = .orange
 
+        setupRecognizer()
+
         playerViewController.view.translatesAutoresizingMaskIntoConstraints = false
         guard let playerView = playerViewController.view else { return }
 
@@ -53,5 +55,22 @@ class DetailsViewController: UIViewController {
         player.play()
 
         player.isStarted = true
+    }
+
+    private func setupRecognizer() {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.playPause.rawValue)]
+
+        recognizer.addTarget(self, action: #selector(onPlayPausePressed))
+
+        playerViewController.view.addGestureRecognizer(recognizer)
+    }
+
+    @objc private func onPlayPausePressed() {
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
     }
 }
