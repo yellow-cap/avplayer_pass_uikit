@@ -11,13 +11,10 @@ import AVFoundation
 import AVKit
 
 class DetailsViewController: UIViewController {
-    let player: Player
-    let playerViewController = AVPlayerViewController()
+    let playerVc: AVPlayerViewController
 
-
-    init(player: Player) {
-        self.player = player
-        playerViewController.player = player
+    init(playerVc: AVPlayerViewController) {
+        self.playerVc = playerVc
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,10 +33,8 @@ class DetailsViewController: UIViewController {
 
         view.backgroundColor = .orange
 
-        setupRecognizer()
-
-        playerViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        guard let playerView = playerViewController.view else { return }
+        guard let playerView = playerVc.view else { return }
+        playerView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(playerView)
 
@@ -50,27 +45,11 @@ class DetailsViewController: UIViewController {
             playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
+        guard let player = playerVc.player as? Player else { return }
         if player.isStarted { return }
         
         player.play()
 
         player.isStarted = true
-    }
-
-    private func setupRecognizer() {
-        let recognizer = UITapGestureRecognizer()
-        recognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.playPause.rawValue)]
-
-        recognizer.addTarget(self, action: #selector(onPlayPausePressed))
-
-        playerViewController.view.addGestureRecognizer(recognizer)
-    }
-
-    @objc private func onPlayPausePressed() {
-        if player.isPlaying {
-            player.pause()
-        } else {
-            player.play()
-        }
     }
 }

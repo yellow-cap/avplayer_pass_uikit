@@ -19,12 +19,12 @@ class Router {
     }
 
     func pushSplitVc() {
-        let player = setupPlayer()
+        let playerVc = setupPlayer()
 
-        let sidebarVc = SidebarViewController(player: player)
+        let sidebarVc = SidebarViewController(playerVc: playerVc)
         sidebarVc.router = self
 
-        let detailsVc = DetailsViewController(player: player)
+        let detailsVc = DetailsViewController(playerVc: playerVc)
 
         splitVc = SplitViewController(style: .doubleColumn)
         splitNav = UINavigationController(rootViewController: splitVc!)
@@ -48,8 +48,8 @@ class Router {
         nav?.pushViewController(vc, animated: true)
     }
 
-    func pushPip(player: Player) {
-        let vc = PipViewController(player: player)
+    func pushPip(playerVc: AVPlayerViewController) {
+        let vc = PipViewController(playerVc: playerVc)
         vc.router = self
 
         splitVc.setViewController(nil, for: .secondary)
@@ -57,19 +57,22 @@ class Router {
         splitNav.pushViewController(vc, animated: true)
     }
 
-    func backToSplit(player: Player) {
+    func backToSplit(playerVc: AVPlayerViewController) {
         splitNav.popViewController(animated: true)
 
-        let detailsVc = DetailsViewController(player: player)
+        let detailsVc = DetailsViewController(playerVc: playerVc)
         splitVc.setViewController(detailsVc, for: .secondary)
     }
 
-    private func setupPlayer() -> Player {
+    private func setupPlayer() -> AVPlayerViewController {
         let asset = AVAsset(url: URL(string: "https://vdqvcus.akamaized.net/6267182477001.m3u8")!)
         let player = Player(items: [
             AVPlayerItem(asset: asset)
         ])
 
-        return player
+        let playerVc = AVPlayerViewController()
+        playerVc.player = player
+
+        return playerVc
     }
 }

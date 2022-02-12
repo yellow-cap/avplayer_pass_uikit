@@ -11,10 +11,10 @@ import AVKit
 class SidebarViewController: UIViewController {
     weak var router: Router?
 
-    let player: Player
+    let playerVc: AVPlayerViewController
 
-    init(player: Player) {
-        self.player = player
+    init(playerVc: AVPlayerViewController) {
+        self.playerVc = playerVc
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -93,7 +93,7 @@ class SidebarViewController: UIViewController {
     }
 
     @objc private func pushPipHandler(sender: AnyObject) {
-        router?.pushPip(player: player)
+        router?.pushPip(playerVc: playerVc)
     }
 }
 

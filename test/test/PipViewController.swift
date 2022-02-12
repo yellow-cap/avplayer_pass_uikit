@@ -11,7 +11,7 @@ import AVKit
 class PipViewController: UIViewController {
     weak var router: Router?
     
-    let player: Player
+    let playerVc: AVPlayerViewController
     var playerView: UIView = {
         let v = UIView()
 
@@ -26,8 +26,8 @@ class PipViewController: UIViewController {
         return l
     }()
 
-    init(player: Player) {
-        self.player = player
+    init(playerVc: AVPlayerViewController) {
+        self.playerVc = playerVc
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,8 +44,8 @@ class PipViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let playerView = playerVc.view else { return }
         playerView.translatesAutoresizingMaskIntoConstraints = false
-        playerView.layer.addSublayer(playerLayer)
 
         setupRecognizer()
         view.addSubview(playerView)
@@ -58,19 +58,6 @@ class PipViewController: UIViewController {
         ])
     }
 
-    override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews")
-    }
-
-    override func viewDidLayoutSubviews() {
-        playerLayer.frame = playerView.bounds
-        playerLayer.player = player
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-    }
-
     private func setupRecognizer() {
         let recognizer = UITapGestureRecognizer()
         recognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
@@ -81,6 +68,6 @@ class PipViewController: UIViewController {
     }
 
     @objc private func onMenuPressed() {
-        router?.backToSplit(player: player)
+        router?.backToSplit(playerVc: playerVc)
     }
 }
