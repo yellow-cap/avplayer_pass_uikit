@@ -18,14 +18,14 @@ struct Test {
 
 class ViewController: UIViewController {
 
-  private var button: UIButton = {
-    let b = UIButton()
-    b.setTitle("button", for: .normal)
-    b.backgroundColor = .red
-    b.addTarget(self, action: #selector(handler), for: .primaryActionTriggered)
+    private var button: UIButton = {
+        let b = UIButton()
+        b.setTitle("button", for: .normal)
+        b.backgroundColor = .red
+        b.addTarget(self, action: #selector(handler), for: .primaryActionTriggered)
 
-    return b
-  }()
+        return b
+    }()
 
   private lazy var router: Router? = {
     guard let nav = self.navigationController else {
