@@ -87,6 +87,7 @@
 				AC5579E127ACFCA900776B74 /* Sources */,
 				AC5579E227ACFCA900776B74 /* Frameworks */,
 				AC5579E327ACFCA900776B74 /* Resources */,
+				AC43ADA027E49EB800A353D7 /* Swift-Format */,
 			);
 			buildRules = (
 			);
@@ -141,6 +142,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AC43ADA027E49EB800A353D7 /* Swift-Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift-Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#Format & Lint\nif which swift-format >/dev/null; then\n    # Project Directory\n    swift-format format -r ${PROJECT_DIR}\n    swift-format lint -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AC5579E127ACFCA900776B74 /* Sources */ = {

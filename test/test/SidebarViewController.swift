@@ -5,104 +5,106 @@
 //  Created by Artem Chernousov on 10.02.2022.
 //
 
-import UIKit
 import AVKit
+import UIKit
 
 class SidebarViewController: UIViewController {
-    weak var router: Router?
+  weak var router: Router?
 
-    let playerVc: AVPlayerViewController
+  let playerVc: AVPlayerViewController
 
-    init(playerVc: AVPlayerViewController) {
-        self.playerVc = playerVc
+  init(playerVc: AVPlayerViewController) {
+    self.playerVc = playerVc
 
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private var pushButton: UIButton = {
-        let b = UIButton()
-        b.setTitle("push details", for: .normal)
-        b.backgroundColor = .orange
-        b.addTarget(self, action: #selector(pushHandler), for: .primaryActionTriggered)
+    super.init(nibName: nil, bundle: nil)
+  }
 
-        return b
-    }()
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
-    private var popButton: UIButton = {
-        let b = UIButton()
-        b.setTitle("pop details", for: .normal)
-        b.backgroundColor = .orange
-        b.addTarget(self, action: #selector(popHandler), for: .primaryActionTriggered)
+  private var pushButton: UIButton = {
+    let b = UIButton()
+    b.setTitle("push details", for: .normal)
+    b.backgroundColor = .orange
+    b.addTarget(self, action: #selector(pushHandler), for: .primaryActionTriggered)
 
-        return b
-    }()
+    return b
+  }()
 
-    private var pushPipButton: UIButton = {
-        let b = UIButton()
-        b.setTitle("push pip", for: .normal)
-        b.backgroundColor = .systemMint
-        b.addTarget(self, action: #selector(pushPipHandler), for: .primaryActionTriggered)
+  private var popButton: UIButton = {
+    let b = UIButton()
+    b.setTitle("pop details", for: .normal)
+    b.backgroundColor = .orange
+    b.addTarget(self, action: #selector(popHandler), for: .primaryActionTriggered)
 
-        return b
-    }()
+    return b
+  }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  private var pushPipButton: UIButton = {
+    let b = UIButton()
+    b.setTitle("push pip", for: .normal)
+    b.backgroundColor = .systemMint
+    b.addTarget(self, action: #selector(pushPipHandler), for: .primaryActionTriggered)
 
-        view.backgroundColor = .blue
+    return b
+  }()
 
-        view.addSubview(pushButton)
-        view.addSubview(popButton)
-        view.addSubview(pushPipButton)
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        pushButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            pushButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
-            pushButton.heightAnchor.constraint(equalToConstant: 70),
-            pushButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            pushButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
-        ])
+    view.backgroundColor = .blue
 
-        popButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            popButton.topAnchor.constraint(equalTo: pushButton.bottomAnchor, constant: 12),
-            popButton.heightAnchor.constraint(equalToConstant: 70),
-            popButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            popButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
-        ])
+    view.addSubview(pushButton)
+    view.addSubview(popButton)
+    view.addSubview(pushPipButton)
 
-        pushPipButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            pushPipButton.topAnchor.constraint(equalTo: popButton.bottomAnchor, constant: 12),
-            pushPipButton.heightAnchor.constraint(equalToConstant: 70),
-            pushPipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            pushPipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
-        ])
-    }
+    pushButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      pushButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
+      pushButton.heightAnchor.constraint(equalToConstant: 70),
+      pushButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+      pushButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+    ])
 
-    @objc private func pushHandler(sender: AnyObject) {
-        router?.pushDetails()
-    }
+    popButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      popButton.topAnchor.constraint(equalTo: pushButton.bottomAnchor, constant: 12),
+      popButton.heightAnchor.constraint(equalToConstant: 70),
+      popButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+      popButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+    ])
 
-    @objc private func popHandler(sender: AnyObject) {
-        router?.popDetails()
-    }
+    pushPipButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      pushPipButton.topAnchor.constraint(equalTo: popButton.bottomAnchor, constant: 12),
+      pushPipButton.heightAnchor.constraint(equalToConstant: 70),
+      pushPipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+      pushPipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+    ])
+  }
 
-    @objc private func pushPipHandler(sender: AnyObject) {
-        router?.pushPip(playerVc: playerVc)
-    }
+  @objc private func pushHandler(sender: AnyObject) {
+    router?.pushDetails()
+  }
+
+  @objc private func popHandler(sender: AnyObject) {
+    router?.popDetails()
+  }
+
+  @objc private func pushPipHandler(sender: AnyObject) {
+    router?.pushPip(playerVc: playerVc)
+  }
 }
 
 extension UIButton {
-    override open func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if context.nextFocusedView == self {
-            self.backgroundColor = .yellow
-        } else {
-            self.backgroundColor = .orange
-        }
+  override open func didUpdateFocus(
+    in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator
+  ) {
+    if context.nextFocusedView == self {
+      self.backgroundColor = .yellow
+    } else {
+      self.backgroundColor = .orange
     }
+  }
 }
